@@ -107,3 +107,9 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+     def test_file_path(self):
+        """tests if __file_path is a str"""
+        self.assertTrue(type(FileStorage._FileStorage__file_path) == str)
+
+
