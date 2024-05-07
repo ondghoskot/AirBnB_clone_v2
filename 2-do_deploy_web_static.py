@@ -19,6 +19,7 @@ def do_pack():
     except Exception as e:
         return None
 
+
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
     if not exists(archive_path):
@@ -30,15 +31,13 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
         run("sudo mkdir -p {}{}/".format(path0, filename))
         run("sudo tar -xzf /tmp/{}.tgz -C {}{}/"
-                .format(filename, path0, filename))
+            .format(filename, path0, filename))
         run("sudo rm /tmp/{}.tgz".format(filename))
         run("sudo mv {}{}/web_static/* {}{}/"
-                .format(path0, filename, path0, filename))
+            .format(path0, filename, path0, filename))
         run("sudo rm -rf {}{}/web_static".format(path0, filename))
         run("sudo rm -rf {}".format(path1))
         run("sudo ln -s {}{}/ {}".format(path0, filename, path1))
         return True
     except Exception as e:
         return False
-
-
