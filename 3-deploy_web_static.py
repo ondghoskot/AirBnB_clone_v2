@@ -14,7 +14,7 @@ def do_pack():
             local("mkdir versions")
         clock = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         archive = "versions/web_static_{}.tgz".format(clock)
-        local("tar -czf {} web_static".format(archive))
+        local("tar -cvzf {} web_static".format(archive))
         return archive
     except Exception as e:
         return None
