@@ -2,7 +2,7 @@
 # sets up web servers for deployment of web_static
 sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo ufw enable
+sudo ufw --force enable
 sudo ufw allow 22/tcp
 sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /data/web_static/shared/
