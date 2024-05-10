@@ -3,10 +3,17 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw enable
+sudo ufw allow 22/tcp
 sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /data/web_static/shared/
 sudo mkdir -p /data/web_static/releases/test/
-echo 'test' > /data/web_static/releases/test/index.html
+echo '<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>' > /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
