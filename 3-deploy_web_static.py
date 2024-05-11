@@ -5,6 +5,7 @@ from os.path import *
 import datetime
 env.user = "ubuntu"
 env.hosts = ['54.197.21.225', '52.87.255.100']
+archive_path = None
 
 
 def do_pack():
@@ -15,7 +16,8 @@ def do_pack():
         clock = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         archive = "versions/web_static_{}.tgz".format(clock)
         local("tar -cvzf {} web_static".format(archive))
-        return archive
+        archive_path = archive
+        return archive_path
     except Exception as e:
         return None
 
@@ -45,8 +47,10 @@ def do_deploy(archive_path):
 
 def deploy():
     """creates and distributes an archive to the web servers"""
-    path_arch = do_pack()
-    print("this is path_arc: {}".format(path_arch))
-    if path_arch is None:
-        return False
-    return do_deploy(path_arch)
+    global archive_path
+    if archive_path is None:
+        path_arch = do_pack()
+        if path_arch is None:
+            return False
+        archive_path = path_arch
+    return do_deploy(archive_path)
