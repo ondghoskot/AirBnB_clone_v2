@@ -25,8 +25,8 @@ def do_deploy(archive_path):
     if not exists(archive_path):
         return False
     filename = splitext(basename(archive_path))[0]
-    path0 = '/data/web_static/releases/'
-    path1 = '/data/web_static/current'
+    path0 = '/usr/share/nginx/html/data/web_static/releases/'
+    path1 = '/usr/share/nginx/html/data/web_static/current'
     try:
         put(archive_path, '/tmp/')
         run("sudo mkdir -p {}{}/".format(path0, filename))

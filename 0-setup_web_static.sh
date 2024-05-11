@@ -23,7 +23,7 @@ server {
     server_name anassch.tech;
 
     location /hbnb_static/ {
-        alias /data/web_static/current/;
+        alias /usr/share/nginx/html/data/web_static/current/;
     }
 
     error_page 404 /404.html;
